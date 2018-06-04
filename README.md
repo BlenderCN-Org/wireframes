@@ -15,6 +15,6 @@ In this case it would be:
 * "Context Toggle" > space_data.use_occlude_geometry
 * "Toggle Show X-Ray"
 
-(Note, in the near future `Toggle Bone Selection Overlay` and `Toggle Show X-Ray` will likely be:
+Note, in the near future `Toggle Bone Selection Overlay` and `Toggle Show X-Ray` will likely be:
  * "Context Toggle" > space_data.overlay.show_bone_selection
  * "Context Toggle" > space_data.shading.show_xray
