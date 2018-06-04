@@ -18,7 +18,7 @@
 
 bl_info = {
     "name": "Wireframes",
-    "author": "Donald Duck",
+    "author": "Dalai Felinto",
     "version": (1, 0),
     "blender": (2, 80, 0),
     "location": "Shortcut only",
@@ -142,6 +142,7 @@ def register():
     for c in classes:
         bpy.utils.register_class(c)
 
+    """
     kc = bpy.context.window_manager.keyconfigs.addon
     km = kc.keymaps.get("3D View")
 
@@ -149,12 +150,14 @@ def register():
         km = kc.keymaps.new(name="3D View", space_type="VIEW_3D")
 
     kmi = km.keymap_items.new('view3d.wireframe_toggle', 'Z', 'PRESS')
+    """
 
 
 def unregister():
     for c in classes:
         bpy.utils.unregister_class(c)
 
+    """
     kc = bpy.context.window_manager.keyconfigs.addon
     km = kc.keymaps.get("3D View")
 
@@ -166,6 +169,7 @@ def unregister():
 
     if not km.keymap_items:
         kc.keymaps.remove(km)
+    """
 
 
 if __name__ == "__main__":
