@@ -53,8 +53,9 @@ class VIEW3D_OT_wireframe_toggle(bpy.types.Operator):
         return overlay.show_wireframes and \
                overlay.show_overlays and \
                shading.show_xray and \
+               shading.show_object_outline == False and \
                shading.type in {'SOLID', 'TEXTURE'} and \
-               space_data.shading.xray_alpha == 0.0
+               shading.xray_alpha == 0.0
 
     @staticmethod
     def _push(context):
@@ -67,7 +68,8 @@ class VIEW3D_OT_wireframe_toggle(bpy.types.Operator):
             overlay.show_overlays,
             shading.show_xray,
             shading.type,
-            space_data.shading.xray_alpha,
+            shading.xray_alpha,
+            shading.show_object_outline,
             )
 
         bpy.data_blob = data_blob
@@ -78,12 +80,13 @@ class VIEW3D_OT_wireframe_toggle(bpy.types.Operator):
         overlay = space_data.overlay
         shading = space_data.shading
 
-        show_wireframes, show_overlays, show_xray, shading_type, xray_alpha  = bpy.data_blob
+        show_wireframes, show_overlays, show_xray, shading_type, xray_alpha, show_object_outline = bpy.data_blob
         overlay.show_wireframes = show_wireframes
         overlay.show_overlays = show_overlays
         shading.show_xray = show_xray
         shading.type = shading_type
-        space_data.shading.xray_alpha = xray_alpha
+        shading.xray_alpha = xray_alpha
+        shading.show_object_outline = show_object_outline
 
         del bpy.data_blob
 
@@ -97,6 +100,7 @@ class VIEW3D_OT_wireframe_toggle(bpy.types.Operator):
         overlay.show_overlays = True
         shading.show_xray = True
         shading.xray_alpha = 0.0
+        shading.show_object_outline = False
 
         if shading.type not in {'SOLID', 'TEXTURE'}:
             shading.type = 'SOLID'
